@@ -1,54 +1,46 @@
-// function hello() {
-//   alert('HEY!');
-// }
+'use strict'
 
-// setInterval(hello, 6000);
+function christmasCountDown() {
+  const christmasDate = new Date('April 16, 2023 16:28');
+  const now = new Date();
+  const diff = christmasDate - now;
 
-// function hello() {
-//   alert('How are you doing?');
-// }
+  const msInSecond = 1000; // how many milliseconds in a second
+  const msInMinute = 60 * 1000; // how many milliseconds in a minute
+  const msInHour = 60 * 60 * 1000; // how many milliseconds in an hour
+  const msInDay = 24 * 60 * 60 * 1000; // how many milliseconds in a day/24 hours
 
-// setInterval(hello, 3000);
+  const displayDay = Math.floor(diff / msInDay);
+  document.querySelector('.days').textContent = displayDay;
 
+  const displayHour = Math.floor((diff % msInDay) / msInHour);
+  document.querySelector('.hours').textContent = displayHour;
 
-// const colorArray = ['#9A208C', '#FFEAEA', '#E11299', '#F5C6EC', '#D61355', '#FF8E9E', '#EFA3C8'];
-// setInterval(colorChange, 1000);
+  const displayMinutes = Math.floor((diff % msInHour) / msInMinute);
+  document.querySelector('.minutes').textContent = displayMinutes;
 
-// let i = 0;
+  const displaySeconds = Math.floor((diff % msInMinute) / msInSecond);
+  document.querySelector('.seconds').textContent = displaySeconds;
 
-// function colorChange() {
-//   document.body.style.backgroundColor = colorArray[i];
-//   i++;
-  
-//   if (i > colorArray.length) {
-//     i = 0;
-//   }
-// }
+  // we need to fix a bug - clockdown goes - direction; it does not stop at 0;
+  if (diff <= 0) {
+    document.querySelector('.days').textContent = 0;
+    document.querySelector('.hours').textContent = 0;
+    document.querySelector('.minutes').textContent = 0;
+    document.querySelector('.seconds').textContent = 0;
+    clearInterval(intervalId);
+    merryChristmas()
+}
 
+}
 
-// const numbers = [1,2,3,4,5,6,7,8,9,10, 22, 23,24,27];
+let intervalId = setInterval(christmasCountDown, 1000);
 
-// function evenNum(array) {
-// return array.filter(element => element % 2 === 0);
-// }
+// Once the clockdown reached zero (0), the heading text changes function
 
-// alert(evenNum(numbers));
-
-// const par = document.querySelector('#par');
-// const button = document.querySelector('#submit');
-
-// button.addEventListener('click', getRandomNumber);
-
-// function getRandomNumber() {
-//   const randomNumber = Math.floor(Math.random() * 101);
-//   document.querySelector('#par').textContent = randomNumber;
-//   // par.textContent = randomNumber;
-// }
-
-// const now = new Date();
-// console.log(now);
-
-// const myDate = new Date();
-// const month = myDate.getMonth();
-// const day = myDate.getDate();
+function merryChristmas() {
+  const heading = document.querySelector('h1');
+  heading.textContent = 'MERRY CHRISTMAS!!! HO-HO-HO!!!';
+  heading.classList.add('christmas-heading-red');
+}
 
