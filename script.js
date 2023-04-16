@@ -1,7 +1,7 @@
 'use strict'
 
 function christmasCountDown() {
-  const christmasDate = new Date('April 16, 2023 16:28');
+  const christmasDate = new Date('December 25, 2023 00:00');
   const now = new Date();
   const diff = christmasDate - now;
 
@@ -44,3 +44,13 @@ function merryChristmas() {
   heading.classList.add('christmas-heading-red');
 }
 
+
+const button = document.querySelector('#myButton');
+button.addEventListener('click', () => {
+document.querySelector('#myAudio').play();
+
+button.addEventListener('dblclick', () => {
+  document.querySelector('#myAudio').pause();
+})
+
+});
